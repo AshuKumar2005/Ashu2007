@@ -1,12 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>My Introduction</h1>
-    <p>Hi, My Name is Ashu Kumar, studing in KL University</p>
-</body>
-</html>
+<fieldset>
+  <legend><b>Personal Information</b></legend>
+  
+  <table>
+    <tr>
+      <td><label for="first_name">First Name:</label></td>
+      <td><input type="text" id="first_name" name="first_name"></td>
+      <td><label for="last_name">Last Name:</label></td>
+      <td><input type="text" id="last_name" name="last_name"></td>
+    </tr>
+
+    <tr>
+      <td><label for="father_name">Father's Name:</label></td>
+      <td><input type="text" id="father_name" name="father_name"></td>
+      <td><label for="mother_name">Mother's Name:</label></td>
+      <td><input type="text" id="mother_name" name="mother_name"></td>
+    </tr>
+
+    <tr>
+      <td><label for="current_address">Current Address:</label></td>
+      <td><input type="text" id="current_address" name="current_address"></td>
+      <td><label for="permanent_address">Permanent Address:</label></td>
+      <td><input type="text" id="permanent_address" name="permanent_address"></td>
+    </tr>
+
+    <tr>
+      <td colspan="4">
+        <input type="checkbox" id="same_address" name="same_address" value="yes">
+        <label for="same_address">Current Address is same as Permanent Address</label>
+      </td>
+    </tr>
+  </table>
+</fieldset>
