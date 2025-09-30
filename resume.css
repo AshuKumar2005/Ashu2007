@@ -1,0 +1,15 @@
+body{
+    background-color: powderblue;
+}
+h1{
+    color: black;
+    text-align: center;
+    font-size: 25px;
+}
+hr{
+    border: 2px solid black;
+}
+img{
+    border-radius: 20px;
+    display: block;
+}

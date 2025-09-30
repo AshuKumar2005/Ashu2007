@@ -1,15 +1,56 @@
 body{
-    background-color: powderblue;
+    background-color: lightyellow;
 }
 h1{
-    color: black;
+    color: purple;
     text-align: center;
-    font-size: 25px;
+    font-size: 50px;
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-decoration-thickness: 5px;
+    /* text-underline-offset: 5px;                   sets the distance between a text's underline and the text itself, controlling how far the underline is positioned vertically from its original default location */
+    text-shadow : 2px, 2px, 5px grey; /* horizontal shadow, vertical shadow, blur radius, color */
+    letter-spacing: 1px; /* space between letters */
+    word-spacing: 5px; /* space between words */
+    line-height: 2.5; /* space between lines */;
+    font-variant: small-caps; /* makes lowercase letters appear as smaller uppercase letters */
+    font-weight: bold; /* sets the weight (or boldness) of the font */
+    font-style: italic; /* makes text italic */;
+    font-family: 'Courier New', Courier, monospace; /* changes the font family */
 }
-hr{
-    border: 2px solid black;
+p{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: green;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: light grey;
+    box-shadow: 5px 5px 10px grey; /* horizontal offset, vertical offset, blur radius, color */
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-indent: 50px; /* indents the first line of text by a specified amount */
+    text-transform: uppercase; /* converts all letters to uppercase */
+    text-transform: lowercase; /* converts all letters to lowercase */
+    text-transform: capitalize; /* capitalizes the first letter of each word in the text */
 }
 img{
-    border-radius: 20px;
+    border-radius: 50%;
     display: block;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    box-shadow: 2px 2px 5px grey;
+    border: 5pz solid black;
+    background-color: white;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    object-fit: cover; /* ensures the image covers the entire area without distortion */
+    /*filter: grayscale(100%); makes the image black and white */
+    
 }
