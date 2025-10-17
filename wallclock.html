@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylish Wall Clock</title>
+  <style>
+    /* Gradient animated background */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(270deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 600% 600%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .wrap {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    /* Glassmorphism card */
+    .card {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Clock face */
+    .clock {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.3);
+      border: 4px solid rgba(255,255,255,0.3);
+      overflow: hidden;
+    }
+
+    /* Center dot */
+    .center-dot {
+      width: 15px;
+      height: 15px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      box-shadow: 0 0 20px #fff, 0 0 40px #f0f;
+    }
+
+    /* Hands */
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform-origin: 50% 100%;
+      transform: translate(-50%, 0) rotate(0deg);
+      border-radius: 10px;
+    }
+
+    .hour {
+      width: 8px;
+      height: 70px;
+      background: #ffcc00;
+      box-shadow: 0 0 15px #ffcc00;
+    }
+    .minute {
+      width: 6px;
+      height: 100px;
+      background: #00ffff;
+      box-shadow: 0 0 15px #00ffff;
+    }
+    .second {
+      width: 3px;
+      height: 110px;
+      background: #ff0077;
+      box-shadow: 0 0 20px #ff0077;
+    }
+
+    /* Tick marks */
+    .ticks .tick {
+      position: absolute;
+      width: 4px;
+      height: 12px;
+      background: rgba(255,255,255,0.8);
+      top: 0;
+      left: 50%;
+      transform-origin: center 125px;
+    }
+
+    /* Digital clock */
+    .digital {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 15px cyan;
+    }
+    .date {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+
+    /* Controls */
+    .panel {
+      background: rgba(255,255,255,0.1);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    select, button {
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    button:hover, select:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00ffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Analog Clock -->
+    <div class="card">
+      <div class="clock" role="img" aria-label="Analog clock">
+        <div class="ticks"></div>
+        <div class="hand hour" id="hour"></div>
+        <div class="hand minute" id="minute"></div>
+        <div class="hand second" id="second"></div>
+        <div class="center-dot"></div>
+      </div>
+    </div>
+
+    <!-- Control Panel -->
+    <div class="panel">
+      <div id="digital" class="digital"></div>
+      <div id="date" class="date"></div>
+
+      <label>
+        Theme:
+        <select id="theme">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="blue">Blue</option>
+        </select>
+      </label>
+
+      <label>
+        Timezone:
+        <select id="tz">
+          <option value="local">Local</option>
+          <option value="UTC">UTC</option>
+          <option value="Asia/Kolkata">Asia/Kolkata</option>
+          <option value="America/New_York">New York</option>
+          <option value="Europe/London">London</option>
+          <option value="Asia/Tokyo">Tokyo</option>
+        </select>
+      </label>
+
+      <button id="toggleD">Toggle Digital</button>
+      <button id="toggleA">Toggle Analog</button>
+    </div>
+  </div>
+
+  <script>
+    // Build tick marks dynamically
+    const ticks = document.querySelector(".ticks");
+    for (let i = 0; i < 60; i++) {
+      const tick = document.createElement("div");
+      tick.className = "tick";
+      tick.style.transform = `rotate(${i * 6}deg) translateX(-50%)`;
+      ticks.appendChild(tick);
+    }
+
+    const hourHand = document.getElementById("hour");
+    const minuteHand = document.getElementById("minute");
+    const secondHand = document.getElementById("second");
+    const digital = document.getElementById("digital");
+    const dateEl = document.getElementById("date");
+
+    const tzSelect = document.getElementById("tz");
+    const toggleD = document.getElementById("toggleD");
+    const toggleA = document.getElementById("toggleA");
+
+    function updateClock() {
+      let now = tzSelect.value === "local" ? new Date() :
+        new Date(new Date().toLocaleString("en-US", { timeZone: tzSelect.value }));
+
+      let h = now.getHours();
+      let m = now.getMinutes();
+      let s = now.getSeconds();
+      let ms = now.getMilliseconds();
+
+      let secDeg = (s + ms / 1000) * 6;
+      let minDeg = (m + s / 60) * 6;
+      let hrDeg = (h % 12 + m / 60) * 30;
+
+      hourHand.style.transform = `translate(-50%,0) rotate(${hrDeg}deg)`;
+      minuteHand.style.transform = `translate(-50%,0) rotate(${minDeg}deg)`;
+      secondHand.style.transform = `translate(-50%,0) rotate(${secDeg}deg)`;
+
+      digital.textContent = now.toLocaleTimeString();
+      dateEl.textContent = now.toDateString();
+    }
+
+    setInterval(updateClock, 200);
+    updateClock();
+
+    // Toggle buttons
+    toggleD.addEventListener("click", () => {
+      digital.style.display = digital.style.display === "none" ? "block" : "none";
+      dateEl.style.display = dateEl.style.display === "none" ? "block" : "none";
+    });
+    toggleA.addEventListener("click", () => {
+      document.querySelector(".card").style.display =
+        document.querySelector(".card").style.display === "none" ? "flex" : "none";
+    });
+  </script>
+</body>
+</html>
