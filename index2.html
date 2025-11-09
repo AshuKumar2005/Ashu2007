@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my Webpage</title>
+    <title>My Webpage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>This is Heading</h1>
     <p>
-        Hello world this is my first webpage.
+        Hello world, this is my first webpage.
     </p>
     <p>
         I am Ashu Kumar Shrivastava.
@@ -17,16 +17,48 @@
     <p>
         I am learning Frontend Development.
     </p>
-    <img src="ashu image.jpg" alt="profile image" weight="200px" height="200px">
+    <img src="ashu image.jpg" alt="profile image" width="200px" height="200px">
     <br>
 
     <h2>HTML Links</h2>
     <a href="https://www.w3schools.com/html/html_links.asp">W3 SCHOOL</a>
     <br>
-    <a href="https://www.w3schools.com/" target="_blank">Visit W3Schools !</a>
+    <a href="https://www.w3schools.com/" target="_blank">Visit W3Schools!</a>
     <br>
     <a href="https://www.lovingly.com/flower-meanings?srsltid=AfmBOorBcEas4XRUvYRr8kpaJI-1Y576gcx7AIPlKrZ1d4Snnl7Z1hek">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9hzfPHjnMrDrjWocUGURe15fKDiNOAZBLPg&s" alt="Flower">
     </a>
+
+    <hr>
+
+    <fieldset>
+        <legend><b>Personal Information</b></legend>
+        <table>
+            <tr>
+                <td><label for="first_name">First Name:</label></td>
+                <td><input type="text" id="first_name" name="first_name"></td>
+                <td><label for="last_name">Last Name:</label></td>
+                <td><input type="text" id="last_name" name="last_name"></td>
+            </tr>
+            <tr>
+                <td><label for="father_name">Father's Name:</label></td>
+                <td><input type="text" id="father_name" name="father_name"></td>
+                <td><label for="mother_name">Mother's Name:</label></td>
+                <td><input type="text" id="mother_name" name="mother_name"></td>
+            </tr>
+            <tr>
+                <td><label for="current_address">Current Address:</label></td>
+                <td><input type="text" id="current_address" name="current_address"></td>
+                <td><label for="permanent_address">Permanent Address:</label></td>
+                <td><input type="text" id="permanent_address" name="permanent_address"></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <input type="checkbox" id="same_address" name="same_address" value="yes">
+                    <label for="same_address">Current Address is same as Permanent Address</label>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
 </body>
 </html>
